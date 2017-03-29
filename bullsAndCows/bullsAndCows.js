@@ -15,20 +15,41 @@
  * guess, use A to indicate the bulls and B to indicate the cows. In the above
  * example, your function should return "1A3B".
 
- * Please note that both secret number and friend's guess may contain duplicate 
+ * Please note that both secret number and friend's guess may contain duplicate
  * digits, for example:
- 
+
  * Secret number:  "1123"
  * Friend's guess: "0111"
- 
- * In this case, the 1st 1 in friend's guess is a bull, the 2nd or 3rd 1 is a cow, 
+
+ * In this case, the 1st 1 in friend's guess is a bull, the 2nd or 3rd 1 is a cow,
  * and your function should return "1A1B".
- 
- * You may assume that the secret number and your friend's guess only contain digits, 
+
+ * You may assume that the secret number and your friend's guess only contain digits,
  * and their lengths are always equal.
  *
  */
 
-export default function(secret, guess) {
-  
+function bullsAndCows(secret, guess) {
+  guess = guess.split('');
+  secret = secret.split('');
+  var copy = secret.slice();
+
+  var bulls = secret.reduce(bullCount, 0);
+  var cows = 0;
+
+  guess.forEach(function(num, i) {
+    var index = copy.indexOf(num);
+    if (index >= 0 && secret[i] !== num) {
+      cows++;
+      copy.splice(index, 1);
+    }
+  });
+
+  return bulls + 'A' + cows + 'B';
+
+  function bullCount(acc, curr, i) {
+    return acc + (guess[i] === curr ? 1 : 0);
+  }
 }
+
+module.exports = bullsAndCows;

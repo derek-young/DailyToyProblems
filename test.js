@@ -6,9 +6,9 @@ import bac from './bullsAndCows/bullsAndCows.js'
 
 var expect = chai.expect;
 
-describe("Power string", () => {
+xdescribe("Power string", () => {
   it("should not use math.pow", () => {
-    var spy = sinon.spy(Math, 'pow');    
+    var spy = sinon.spy(Math, 'pow');
 
     powerString('2', '2');
 
@@ -29,7 +29,7 @@ describe("Power string", () => {
 
 });
 
-xdescribe("Bulls and cows", () => {
+describe("Bulls and cows", () => {
   it("Should return the proper value for all guesses", () => {
     expect(bac('1023', '0231')).to.equal('0A4B');
     expect(bac('1023', '9876')).to.equal('0A0B');
