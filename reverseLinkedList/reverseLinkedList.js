@@ -22,11 +22,7 @@ LinkedList.prototype.addToHead = function(value) {
 }
 
 LinkedList.prototype.removeHead = function() {
-
-}
-
-LinkedList.prototype.removeTail = function() {
-
+  this.head = this.head.next;
 }
 
 var Node = function(value) {
